@@ -4,7 +4,7 @@ import {
   getAllResidencies,
   getResidency,
 } from '../controllers/resdCntrl.js'
-import jwtCheck from '../config/auth0Config'
+import jwtCheck from '../config/auth0Config.js'
 
 const router = express.Router()
 
