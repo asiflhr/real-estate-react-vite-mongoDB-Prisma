@@ -16,7 +16,6 @@ export const createResidency = asyncHandler(async (req, res) => {
   } = req.body.data
 
   console.log(req.body.data)
-
   try {
     const residency = await prisma.residency.create({
       data: {
@@ -35,9 +34,9 @@ export const createResidency = asyncHandler(async (req, res) => {
     res.send({ message: 'Residency created successfully', residency })
   } catch (err) {
     if (err.code === 'P2002') {
-      res.status(409).send({ message: 'Residency already exists' })
+      throw new Error('A residency with address already there')
     }
-    throw new Error(err)
+    throw new Error(err.message)
   }
 })
 
@@ -61,6 +60,6 @@ export const getResidency = asyncHandler(async (req, res) => {
     })
     res.send(residency)
   } catch (err) {
-    throw new Error(err)
+    throw new Error(err.message)
   }
 })
