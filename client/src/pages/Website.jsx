@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React from 'react'
 import Companies from '../components/Companies/Companies'
 import Contact from '../components/Contact/Contact'
 import Footer from '../components/Footer/Footer'
