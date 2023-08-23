@@ -6,9 +6,15 @@ const useProperties = () => {
   const { data, isLoading, isError, refetch } = useQuery(
     'allProperties',
     getAllProperties,
-    { refectchOnWindowFocus: false }
+    { refetchOnWindowFocus: false }
   )
-  return { data, isError, isLoading, refetch }
+
+  return {
+    data,
+    isError,
+    isLoading,
+    refetch,
+  }
 }
 
 export default useProperties
