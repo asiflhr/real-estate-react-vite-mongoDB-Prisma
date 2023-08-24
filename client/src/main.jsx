@@ -4,15 +4,17 @@ import './index.css'
 import App from './App'
 import { Auth0Provider } from '@auth0/auth0-react'
 
+console.log('process.env: ', import.meta.env)
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Auth0Provider
-      domain='dev-pzsfvqymw322gi3g.us.auth0.com'
-      clientId='EuIRBV4T4MKU8zGYHSlkZLx1tqbtLlKS'
+      domain={import.meta.env.domain}
+      clientId={import.meta.env.clientId}
       authorizationParams={{
-        redirect_uri: 'http://localhost:5173',
+        redirect_uri: import.meta.env.VITE_frontent_redirect_uri,
       }}
-      audience='http://localhost:8000'
+      audience={import.meta.env.audience}
       scope='openid profile email'
     >
       <App />
