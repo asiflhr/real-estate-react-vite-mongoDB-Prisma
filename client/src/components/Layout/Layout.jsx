@@ -25,7 +25,7 @@ const Layout = () => {
     const getTokenAndRegsiter = async () => {
       const res = await getAccessTokenWithPopup({
         authorizationParams: {
-          audience: import.meta.env.audience,
+          audience: import.meta.env.VITE_audience,
           scope: 'openid profile email',
         },
       })
