@@ -1,7 +1,7 @@
-import asyncHandler from 'express-async-handler'
-import { prisma } from '../config/prismaConfig.js'
+import asyncHandler from "express-async-handler";
 
-// create new residency
+import { prisma } from "../config/prismaConfig.js";
+
 export const createResidency = asyncHandler(async (req, res) => {
   const {
     title,
@@ -13,9 +13,9 @@ export const createResidency = asyncHandler(async (req, res) => {
     facilities,
     image,
     userEmail,
-  } = req.body.data
+  } = req.body.data;
 
-  console.log(req.body.data)
+  console.log(req.body.data);
   try {
     const residency = await prisma.residency.create({
       data: {
@@ -29,37 +29,37 @@ export const createResidency = asyncHandler(async (req, res) => {
         image,
         owner: { connect: { email: userEmail } },
       },
-    })
+    });
 
-    res.send({ message: 'Residency created successfully', residency })
+    res.send({ message: "Residency created successfully", residency });
   } catch (err) {
-    if (err.code === 'P2002') {
-      throw new Error('A residency with address already there')
+    if (err.code === "P2002") {
+      throw new Error("A residency with address already there");
     }
-    throw new Error(err.message)
+    throw new Error(err.message);
   }
-})
+});
 
-// get all residencies
+// function to get all the documents/residencies
 export const getAllResidencies = asyncHandler(async (req, res) => {
   const residencies = await prisma.residency.findMany({
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
-  })
-  res.send(residencies)
-})
+  });
+  res.send(residencies);
+});
 
-// get a specific document/residency
+// function to get a specific document/residency
 export const getResidency = asyncHandler(async (req, res) => {
-  const { id } = req.params
+  const { id } = req.params;
 
   try {
     const residency = await prisma.residency.findUnique({
       where: { id },
-    })
-    res.send(residency)
+    });
+    res.send(residency);
   } catch (err) {
-    throw new Error(err.message)
+    throw new Error(err.message);
   }
-})
+});
