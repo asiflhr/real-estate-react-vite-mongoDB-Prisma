@@ -17,9 +17,9 @@ const Facilities = ({
 }) => {
   const form = useForm({
     initialValues: {
-      bedrooms: propertyDetails.facilities.bedrooms,
-      parkings: propertyDetails.facilities.parkings,
-      bathrooms: propertyDetails.facilities.bathrooms,
+      bedrooms: propertyDetails?.facilities?.bedrooms,
+      parkings: propertyDetails?.facilities?.parkings,
+      bathrooms: propertyDetails?.facilities?.bathrooms,
     },
     validate: {
       bedrooms: (value) => (value < 1 ? 'Must have atleast one room' : null),
