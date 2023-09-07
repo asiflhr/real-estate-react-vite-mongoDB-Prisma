@@ -38,7 +38,7 @@ const Property = () => {
     onSuccess: () => {
       setUserDetails((prev) => ({
         ...prev,
-        bookings: prev.bookings.filter((booking) => booking?.id !== id),
+        bookings: prev?.bookings?.filter((booking) => booking?.id !== id),
       }));
 
       toast.success("Booking cancelled", { position: "bottom-right" });

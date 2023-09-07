@@ -44,7 +44,7 @@ const Value = () => {
             allowMultipleExpanded={false}
             preExpanded={[0]}
           >
-            {data.map((item, i) => {
+            {data?.map((item, i) => {
               const [className, setClassName] = useState(null);
               return (
                 <AccordionItem className={`accordionItem ${className}`} uuid={i} key={i}>

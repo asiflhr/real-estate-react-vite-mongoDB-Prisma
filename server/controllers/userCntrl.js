@@ -99,12 +99,12 @@ export const toFav = asyncHandler(async (req, res) => {
       where: { email },
     });
 
-    if (user.favResidenciesID.includes(rid)) {
+    if (user?.favResidenciesID.includes(rid)) {
       const updateUser = await prisma.user.update({
         where: { email },
         data: {
           favResidenciesID: {
-            set: user.favResidenciesID.filter((id) => id !== rid),
+            set: user?.favResidenciesID?.filter((id) => id !== rid),
           },
         },
       });
