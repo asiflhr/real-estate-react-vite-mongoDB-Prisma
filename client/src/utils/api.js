@@ -8,35 +8,35 @@ export const api = axios.create({
 
 export const getAllProperties = async () => {
   try {
-    const response = await api.get('/residency/allresd', {
+    const response = await api.get("/residency/allresd", {
       timeout: 10 * 1000,
-    })
+    });
 
     if (response.status === 400 || response.status === 500) {
-      throw response.data
+      throw response.data;
     }
-    return response.data
+    return response.data;
   } catch (error) {
-    toast.error('Something went wrong')
-    throw error
+    toast.error("Something went wrong");
+    throw error;
   }
-}
+};
 
 export const getProperty = async (id) => {
   try {
     const response = await api.get(`/residency/${id}`, {
       timeout: 10 * 1000,
-    })
+    });
 
     if (response.status === 400 || response.status === 500) {
-      throw response.data
+      throw response.data;
     }
-    return response.data
+    return response.data;
   } catch (error) {
-    toast.error('Something went wrong')
-    throw error
+    toast.error("Something went wrong");
+    throw error;
   }
-}
+};
 
 export const createUser = async (email, token) => {
   try {
@@ -48,12 +48,12 @@ export const createUser = async (email, token) => {
           Authorization: `Bearer ${token}`,
         },
       }
-    )
+    );
   } catch (error) {
-    toast.error('Something went wrong, Please try again')
-    throw error
+    toast.error("Something went wrong, Please try again");
+    throw error;
   }
-}
+};
 
 export const bookVisit = async (date, propertyId, email, token) => {
   try {
@@ -62,19 +62,19 @@ export const bookVisit = async (date, propertyId, email, token) => {
       {
         email,
         id: propertyId,
-        date: dayjs(date).format('DD/MM/YYYY'),
+        date: dayjs(date).format("DD/MM/YYYY"),
       },
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
-    )
+    );
   } catch (error) {
-    toast.error('Something went wrong, Please try again')
-    throw error
+    toast.error("Something went wrong, Please try again");
+    throw error;
   }
-}
+};
 
 export const removeBooking = async (id, email, token) => {
   try {
@@ -88,13 +88,13 @@ export const removeBooking = async (id, email, token) => {
           Authorization: `Bearer ${token}`,
         },
       }
-    )
+    );
   } catch (error) {
-    toast.error('Something went wrong, Please try again')
+    toast.error("Something went wrong, Please try again");
 
-    throw error
+    throw error;
   }
-}
+};
 
 export const toFav = async (id, email, token) => {
   try {
@@ -108,15 +108,17 @@ export const toFav = async (id, email, token) => {
           Authorization: `Bearer ${token}`,
         },
       }
-    )
+    );
   } catch (e) {
-    throw e
+    throw e;
   }
-}
+};
+
 
 export const getAllFav = async (email, token) => {
-  if (!token) return
-  try {
+  if(!token) return 
+  try{
+
     const res = await api.post(
       `/user/allFav`,
       {
@@ -127,17 +129,21 @@ export const getAllFav = async (email, token) => {
           Authorization: `Bearer ${token}`,
         },
       }
-    )
+    );
+      
+    return res.data["favResidenciesID"]
 
-    return res.data['favResidenciesID']
-  } catch (e) {
-    toast.error('Something went wrong while fetching favs')
+  }catch(e)
+  {
+    toast.error("Something went wrong while fetching favs");
     throw e
   }
-}
+} 
+
 
 export const getAllBookings = async (email, token) => {
-  if (!token) return
+  
+  if(!token) return 
   try {
     const res = await api.post(
       `/user/allBookings`,
@@ -149,21 +155,24 @@ export const getAllBookings = async (email, token) => {
           Authorization: `Bearer ${token}`,
         },
       }
-    )
-    return res.data['bookedVisits']
+    );
+    return res.data["bookedVisits"];
+
+    
   } catch (error) {
-    toast.error('Something went wrong while fetching bookings')
+    toast.error("Something went wrong while fetching bookings");
     throw error
   }
 }
 
+
 export const createResidency = async (data, token) => {
   console.log(data)
-  try {
+  try{
     const res = await api.post(
       `/residency/create`,
       {
-        data,
+        data
       },
       {
         headers: {
@@ -171,7 +180,8 @@ export const createResidency = async (data, token) => {
         },
       }
     )
-  } catch (error) {
+  }catch(error)
+  {
     throw error
   }
 }

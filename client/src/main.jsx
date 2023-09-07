@@ -10,9 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       domain={import.meta.env.VITE_domain}
       clientId={import.meta.env.VITE_clientId}
       authorizationParams={{
-        redirect_uri: import.meta.env.VITE_frontent_redirect_uri,
+        redirect_uri: 'https://client-real-estate-react-vite-mongo-db-prisma.vercel.app/',
       }}
-      audience={import.meta.env.VITE_audience}
+      audience='https://server-real-estate-react-vite-mongo-db-prisma.vercel.app/'
       scope='openid profile email'
     >
       <App />
